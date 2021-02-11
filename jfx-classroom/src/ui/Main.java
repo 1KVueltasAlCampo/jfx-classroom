@@ -9,21 +9,27 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	
 	private ClassroomGUI cgui;
+	private BorderPane bdp;
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	public Main() {
+		bdp = new BorderPane();
+		bdp.setPrefHeight(717);
+		bdp.setPrefWidth(753);
+		cgui = new ClassroomGUI(bdp);
 	}
 	
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
-		BorderPane bdp = new BorderPane();
-		bdp.setPrefHeight(717);
-		bdp.setPrefWidth(753);
+		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogInScreen.fxml"));
-		cgui = new ClassroomGUI(bdp);
 		fxmlLoader.setController(cgui);
 		Parent root = fxmlLoader.load();
 		bdp.setCenter(root);

@@ -44,13 +44,13 @@
                   <Font name="System Bold" size="38.0" />
                </font>
             </Label>
-            <TableView VBox.vgrow="ALWAYS">
+            <TableView fx:id="tvUserAccountList" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn prefWidth="188.00000303983688" text="Username" />
-                <TableColumn prefWidth="80.00004577636719" text="Gender" />
-                  <TableColumn prefWidth="217.60003662109375" text="Career" />
-                  <TableColumn prefWidth="147.20001220703125" text="Birthday" />
-                  <TableColumn prefWidth="123.20001220703125" text="Browser" />
+                <TableColumn fx:id="tcUsername" prefWidth="188.00000303983688" text="Username" />
+                <TableColumn fx:id="tcGender" prefWidth="80.00004577636719" text="Gender" />
+                  <TableColumn fx:id="tcCareer" prefWidth="217.60003662109375" text="Career" />
+                  <TableColumn fx:id="tcBirthday" prefWidth="147.20001220703125" text="Birthday" />
+                  <TableColumn fx:id="tcBrowser" prefWidth="123.20001220703125" text="Browser" />
               </columns>
             </TableView>
          </children>

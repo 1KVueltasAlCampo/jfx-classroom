@@ -1,7 +1,10 @@
 package ui;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,10 +24,13 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import model.Classroom;
 import model.UserAccount;
 
 public class ClassroomGUI {
+		private Desktop desktop = Desktop.getDesktop();
 		@FXML
 		private VBox mainPanel;
 		
@@ -130,11 +136,14 @@ public class ClassroomGUI {
 	    	else {
 	    		txtfLogInUsername.setText("");
 	    		txtfLoginPassword.setText("");
+	    		doAnAlert("Log In Incorrect","The Username and the password given are incorrect","Error");
+	    		/*
 	    		Alert alert = new Alert(AlertType.INFORMATION);
 	    	    alert.setTitle("Log In Incorrect");
 	    	    alert.setContentText("The Username and the password given are incorrect");
 	    	    alert.setHeaderText("Error");
 	    	    alert.showAndWait();
+	    	    */
 	    	}
 	    }
 
@@ -148,11 +157,63 @@ public class ClassroomGUI {
 	    }
 
 	    @FXML
-	    public void browseAction(ActionEvent event) {
-
+	    public void browseAction(ActionEvent event) throws IOException {
+	    	
+	    	String ubication = txtfProfilePhoto.getText();
+	    	File photo = new File(ubication);
+	    	if(!photo.exists()) {
+	    		FileChooser fileChooser = new FileChooser();
+		    	fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("IMAGE FILES", "*.jpg", "*.png", "*.gif"));
+		    	fileChooser.setTitle("Open Resource File");
+		    	Window stage = null;
+		    	if(!ubication.equals("")) {
+		    		fileChooser.setInitialDirectory(photo);
+		    	}
+		    	
+		    	try {
+		    		File information = fileChooser.showOpenDialog(stage);
+		    		if (information != null) {
+		                openFile(information);
+		                ubication = information.getAbsolutePath();
+		    			txtfProfilePhoto.setText(ubication);
+		            }
+					else {
+						doAnAlert("Invalid profile Photo","You have not entered a valid profile photo","Error");
+					}
+		    	} catch(IllegalArgumentException ex) {
+		    		doAnAlert("Invalid profile Photo","You have not entered a valid profile photo","Error");
+		    	    fileChooser.setInitialDirectory(null);
+		    	}
+	    	}
+	    	else {
+	    		openFile(photo);
+                ubication = photo.getAbsolutePath();
+    			txtfProfilePhoto.setText(ubication);
+	    	}
+	    	
+	  
 	    }
+	   
+	    private void doAnAlert(String title,String content,String header) {
+	    	Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setTitle(title);
+    	    alert.setContentText(content);
+    	    alert.setHeaderText(header);
+    	    alert.showAndWait();
+	    }
+	    
+	    private void openFile(File file) {
+	        try {
+	            desktop.open(file);
+	        } catch (IOException ex) {
+	            Logger.getLogger(ClassroomGUI.class.getName()).log(
+	                Level.SEVERE, null, ex
+	            );
+	        }
+	    }
+	    
 
-	    @FXML
+		@FXML
 	    public void createAccountAction(ActionEvent event) {
 
 	    }

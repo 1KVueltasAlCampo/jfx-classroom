@@ -25,4 +25,17 @@ public class Classroom {
 		}
 		return false;
 	}
+	
+	public int findAnUser(String username) {
+		for(int i=0;i<users.size();i++) {
+			if(username.equals(users.get(i).getUsername())) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public String getTheProfilePhoto(int index) {
+		return users.get(index).getProfilePhoto();
+	}
 }

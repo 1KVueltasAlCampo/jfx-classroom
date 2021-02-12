@@ -12,17 +12,17 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="74.0" prefWidth="754.0">
+      <HBox prefHeight="162.0" prefWidth="754.0">
          <children>
-            <Label prefHeight="66.0" prefWidth="218.0">
+            <Label fx:id="lbUsername" prefHeight="74.0" prefWidth="268.0" textAlignment="RIGHT">
                <font>
-                  <Font size="20.0" />
+                  <Font size="25.0" />
                </font>
                <HBox.margin>
-                  <Insets left="300.0" top="10.0" />
+                  <Insets left="100.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <ImageView fitHeight="68.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ivProfilePhoto" fitHeight="106.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="20.0" top="10.0" />
                </HBox.margin>
